@@ -1,0 +1,47 @@
+namespace TP04_Drcuker_Daiksel.Models;
+
+
+public class Ahorcado
+{
+    public string palabra { get; private set; }
+    public int intentos { get; private set; }
+    public int fallos { get; private set; }
+    public char[] letras { get; private set; }
+    public char[] letrasAdivinadas { get; private set; }
+
+    public List<char> letrasFalladas { get; private set; }
+    
+
+    public Ahorcado(string palabra)
+    {
+        this.palabra = palabra;
+        intentos = 0;
+        finalizar = false;
+        letras = palabra.ToCharArray();
+        letrasAdivinadas = new char[letras.Length];
+        for (int i = 0; i < letrasAdivinadas.Length; i++)
+        {
+            letrasAdivinadas[i] = '_';
+        }
+        letrasFalladas = new List<char>();
+        fallos = 0;
+    }
+
+
+    public void adivinarLetra(char letra)
+    {
+        intentos++;
+        bool letraEncontrada = false;
+        int posicionLetra = 0;
+        if (letras.Contains(letra) == true)
+        {
+            posicionLetra = letras.IndexOf(letra);
+            letrasAdivinadas[posicionLetra] = letra;
+        }
+        else
+        {
+            fallos++;
+            letrasFalladas.Add(letra);
+        }
+    }
+}
