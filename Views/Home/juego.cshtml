@@ -8,9 +8,39 @@
 </head>
 <body>
     <main>
+
+        <h1>AHORCADO</h1>
+
+        <h2>@foreach(char item in ViewBag.palabraAdivinar){
+            @item
+            }
+            </h2>
+
+        <h3>
+            letras utilizadas:
+            @foreach(char item in ViewBag.letrasFalladas){
+                @item
+            }
+        </h3>
+
+        <h4>
+            intentos: @ViewBag.intentos
+            <br>
+            fallos: @ViewBag.fallos
+        </h4>
+
         <form action='@Url.Action("verificar", "Home")' method="post" enctype="multipart/form-data">
-            <input type="text" maxlength="1" name="letraAdivinada">
+            <p> adivinar letra: </p> <input type="text" maxlength="1" name="letraAdivinada">
+            <input type="submit" value="Arriesgar letra">
         </form>
+
+        <form action='@Url.Action("verificar", "Home")' method="post" enctype="multipart/form-data">
+            <p> adivinar palabra: </p> <input type="text" maxlength="@ViewBag.cantidadLetras" name="palabraAdivinada">
+            <input type="submit" value="Arriesgar palabra">
+        </form>
+
+        <article>@ViewBag.mensaje</article>
+
     </main>
 </body>
 </html>
