@@ -31,12 +31,12 @@
 
         <form action='@Url.Action("verificar", "Home")' method="post" enctype="multipart/form-data">
             <p> adivinar letra: </p> <input type="text" maxlength="1" name="letraAdivinada">
-            <input type="submit" value="Arriesgar letra">
+            <input class="boton" type="submit" value="Arriesgar letra">
         </form>
 
         <form action='@Url.Action("verificar", "Home")' method="post" enctype="multipart/form-data">
             <p> adivinar palabra: </p> <input type="text" maxlength="@ViewBag.cantidadLetras" name="palabraAdivinada">
-            <input type="submit" value="Arriesgar palabra">
+            <input class="boton" type="submit" value="Arriesgar palabra">
         </form>
 
         <article>@ViewBag.mensaje</article>

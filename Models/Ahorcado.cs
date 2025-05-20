@@ -33,7 +33,7 @@ public static class Ahorcado
     {
         string devolver;
         char letraEntrada = char.ToUpper(letra);
-        intentos++;
+        
 
         if (letrasFalladas.Contains(letraEntrada) || letrasAdivinadas.Contains(letraEntrada))
         {
@@ -48,11 +48,13 @@ public static class Ahorcado
                 letrasAdivinadas[i] = letraEntrada;
             }
             }
+            intentos++;
             devolver = "Adivinaste!";
         }
         else
         {
             fallos++;
+            intentos++;
             letrasFalladas.Add(letraEntrada);
             devolver = "Incorrecto!";
         }
