@@ -11,17 +11,14 @@
 
         <h1>AHORCADO</h1>
 
-        <h2>@foreach(char item in ViewBag.palabraAdivinar){
-            @item
+        @foreach(char item in ViewBag.palabraAdivinar){
+            <h4>@item</h4>
             }
-            </h2>
 
-        <h3>
             letras utilizadas:
             @foreach(char item in ViewBag.letrasFalladas){
-                @item
+                <h4>@item</h4>
             }
-        </h3>
 
         <h4>
             intentos: @ViewBag.intentos
