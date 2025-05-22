@@ -1,18 +1,18 @@
 namespace TP04_Drcuker_Daiksel.Models;
 
 
-public static class Ahorcado
+public  class Ahorcado
 {
-    public static int intentos { get; private set; }
-    public static int fallos { get; private set; }
-    public static char[] letras { get; private set; }
-    public static char[] letrasAdivinadas { get; private set; }
-    public static List<char> letrasFalladas { get; private set; }
-    public static string PALABRA { get; private set; }
-    public static bool finalizar { get; private set; }
-    public static bool gano { get; private set; }
-    public static bool perdio { get; private set; }
-    public static void inicializarAhorcado()
+    public  int intentos { get; private set; }
+    public  int fallos { get; private set; }
+    public  char[] letras { get; private set; }
+    public  char[] letrasAdivinadas { get; private set; }
+    public  List<char> letrasFalladas { get; private set; }
+    public  string PALABRA { get; private set; }
+    public  bool finalizar { get; private set; }
+    public  bool gano { get; private set; }
+    public  bool perdio { get; private set; }
+    public  void inicializarAhorcado()
     {
         PALABRA = "COINCIDENCIA";
         intentos = 0;
@@ -29,7 +29,7 @@ public static class Ahorcado
         perdio = false;
     }
 
-    public static string adivinarLetra(char letra)
+    public  string adivinarLetra(char letra)
     {
         string devolver;
         char letraEntrada = char.ToUpper(letra);
@@ -76,7 +76,7 @@ public static class Ahorcado
         }
 
 
-        static public string arriesgarPalabraCompleta(string palabra)
+         public string arriesgarPalabraCompleta(string palabra)
         {
             string devolver = "";
             palabra = palabra.ToUpper(); 

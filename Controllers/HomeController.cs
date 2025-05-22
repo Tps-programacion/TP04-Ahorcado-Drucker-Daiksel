@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using TP04_Drcuker_Daiksel.Models;
+using Newtonsoft.Json;
 
 namespace TP04_Drcuker_Daiksel.Controllers;
 
@@ -16,19 +17,38 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        Ahorcado.inicializarAhorcado();
+        Ahorcado Juego =  new Ahorcado();
+        Juego.inicializarAhorcado();
+        HttpContext.Session.SetString("Juego", Objeto.ObjectToString(Juego));
+
         return View();
     }
 
+
+    public static class Objeto{
+        public static string ObjectToString<T>(T? obj){
+            return JsonConvert.SerializeObject(obj);
+        }
+        public static T? StringToObject<T>(string txt){
+            if(string.IsNullOrEmpty(txt)){
+                return default;
+            }
+            else{
+                return JsonConvert.DeserializeObject<T>(txt);
+            }
+        }
+    }
+
     public IActionResult jugar(){
-        
-        ViewBag.palabraAdivinar = Ahorcado.letrasAdivinadas;
-        ViewBag.fallos = Ahorcado.fallos;
-        ViewBag.intentos = Ahorcado.intentos;
-        ViewBag.letrasFalladas = Ahorcado.letrasFalladas;
-        ViewBag.perdio = Ahorcado.perdio;
-        ViewBag.gano = Ahorcado.gano;
-        ViewBag.cantidadLetras = Ahorcado.letras.Length;
+        ViewBag.Juego = Objeto.StringToObject<Ahorcado>(HttpContext.Session.GetString("Juego"));
+        Ahorcado Juego = 
+        ViewBag.palabraAdivinar = Juego.letrasAdivinadas;
+        ViewBag.fallos = Juego.fallos;
+        ViewBag.intentos = Juego.intentos;
+        ViewBag.letrasFalladas = Juego.letrasFalladas;
+        ViewBag.perdio = Juego.perdio;
+        ViewBag.gano = Juego.gano;
+        ViewBag.cantidadLetras = Juego.letras.Length;
         
         ViewBag.mensaje = "Aca se van a mostrar los mensajes de consola";
         return View("juego");
@@ -36,37 +56,37 @@ public class HomeController : Controller
 
     public IActionResult verificar(char letraAdivinada, string palabraAdivinada)
     {
-
+        ViewBag.Juego = Objeto.StringToObject<Ahorcado>(HttpContext.Session.GetString("Juego"));
         string devuelta = "";
-        if (Ahorcado.finalizar == false)
+        if (Juego.finalizar == false)
         {
             if (palabraAdivinada == null)
             {
-                devuelta = Ahorcado.adivinarLetra(letraAdivinada);
+                devuelta = Juego.adivinarLetra(letraAdivinada);
                 ViewBag.mensaje = devuelta;
             }
             else
             {
-                devuelta = Ahorcado.arriesgarPalabraCompleta(palabraAdivinada);
+                devuelta = Juego.arriesgarPalabraCompleta(palabraAdivinada);
                 ViewBag.mensaje = devuelta;
             }
         }
 
-        ViewBag.palabraAdivinar = Ahorcado.letrasAdivinadas;
-        ViewBag.fallos = Ahorcado.fallos;
-        ViewBag.intentos = Ahorcado.intentos;
-        ViewBag.letrasFalladas = Ahorcado.letrasFalladas;
-        ViewBag.perdio = Ahorcado.perdio;
-        ViewBag.gano = Ahorcado.gano;
-        ViewBag.cantidadLetras = Ahorcado.letras.Length;
+        ViewBag.palabraAdivinar = Juego.letrasAdivinadas;
+        ViewBag.fallos = Juego.fallos;
+        ViewBag.intentos = Juego.intentos;
+        ViewBag.letrasFalladas = Juego.letrasFalladas;
+        ViewBag.perdio = Juego.perdio;
+        ViewBag.gano = Juego.gano;
+        ViewBag.cantidadLetras = Juego.letras.Length;
 
-        if (Ahorcado.finalizar == false)
+        if (Juego.finalizar == false)
         {
             return View("Juego");
         }
         else
         {
-            if (Ahorcado.gano == true)
+            if (Juego.gano == true)
             {
                 return View("vistaGanador");
             }
