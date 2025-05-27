@@ -1,16 +1,25 @@
 namespace TP04_Drcuker_Daiksel.Models;
-
+using Newtonsoft.Json;
 
 public  class Ahorcado
 {
+    [JsonProperty]
     public  int intentos { get; private set; }
+    [JsonProperty]
     public  int fallos { get; private set; }
+    [JsonProperty]
     public  char[] letras { get; private set; }
+    [JsonProperty]
     public  char[] letrasAdivinadas { get; private set; }
+    [JsonProperty]
     public  List<char> letrasFalladas { get; private set; }
+    [JsonProperty]
     public  string PALABRA { get; private set; }
+    [JsonProperty]
     public  bool finalizar { get; private set; }
+    [JsonProperty]
     public  bool gano { get; private set; }
+    [JsonProperty]
     public  bool perdio { get; private set; }
     public  void inicializarAhorcado()
     {

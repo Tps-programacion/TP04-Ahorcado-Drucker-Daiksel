@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TP04_Drcuker_Daiksel")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+17f68d9b65d8f5ceec4e010593a5c84c51d54d33")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bac8628f1d0b026b4907c4fdf3789787b9578eca")]
 [assembly: System.Reflection.AssemblyProductAttribute("TP04_Drcuker_Daiksel")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TP04_Drcuker_Daiksel")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

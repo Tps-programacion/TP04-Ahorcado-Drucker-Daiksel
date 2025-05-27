@@ -17,9 +17,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        Ahorcado Juego =  new Ahorcado();
-        Juego.inicializarAhorcado();
-        HttpContext.Session.SetString("Juego", Objeto.ObjectToString(Juego));
+      
 
         return View();
     }
@@ -40,8 +38,11 @@ public class HomeController : Controller
     }
 
     public IActionResult jugar(){
-        ViewBag.Juego = Objeto.StringToObject<Ahorcado>(HttpContext.Session.GetString("Juego"));
-        Ahorcado Juego = 
+        Ahorcado Juego =  new Ahorcado();
+        Juego.inicializarAhorcado();
+        HttpContext.Session.SetString("Juego", Objeto.ObjectToString(Juego));
+
+
         ViewBag.palabraAdivinar = Juego.letrasAdivinadas;
         ViewBag.fallos = Juego.fallos;
         ViewBag.intentos = Juego.intentos;
@@ -56,7 +57,7 @@ public class HomeController : Controller
 
     public IActionResult verificar(char letraAdivinada, string palabraAdivinada)
     {
-        ViewBag.Juego = Objeto.StringToObject<Ahorcado>(HttpContext.Session.GetString("Juego"));
+        Ahorcado Juego = Objeto.StringToObject<Ahorcado>(HttpContext.Session.GetString("Juego"));;
         string devuelta = "";
         if (Juego.finalizar == false)
         {
@@ -71,6 +72,8 @@ public class HomeController : Controller
                 ViewBag.mensaje = devuelta;
             }
         }
+
+        HttpContext.Session.SetString("Juego", Objeto.ObjectToString(Juego));
 
         ViewBag.palabraAdivinar = Juego.letrasAdivinadas;
         ViewBag.fallos = Juego.fallos;
